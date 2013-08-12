@@ -1,12 +1,13 @@
-# frontail – tail -F output in browser
+# frontail – tail -f output in browser
 
 ```frontail``` is vert.x application for serving `tail -f` output to browser.
+
+Highly influenced by (and forked from) https://github.com/mthenw/frontail
 
 ## Features
 
 * search
 * log rotation
-* autoscrolling
 * marking logs
 
 ## Running
@@ -15,7 +16,7 @@
 
 Web interface is on http://localhost:9090
 
-Running as normal user may not allow you to read some log file, it's useful then to ```tee``` log file with sudo, eg:
+Running as normal user may not allow you to read system log files, it's useful then to ```tee``` log file with sudo, eg:
 
     sudo tail -f /var/log/apache2/access.log | tee tail.log
   
@@ -28,9 +29,7 @@ Running as normal user may not allow you to read some log file, it's useful then
 
 (The MIT License)
 
-Copyright 2013 
-Maciej Winnicki http://maciejwinnicki.pl
-Piotr Jagielski http://jagielu.com
+Copyright 2013 Maciej Winnicki http://maciejwinnicki.pl Piotr Jagielski http://jagielu.com
 
 This project is free software released under the MIT/X11 license:
 
