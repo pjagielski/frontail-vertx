@@ -1,0 +1,6 @@
+{
+  "main":"groovy:com.jagielu.FrontailMod",
+  "description":"Frontail using Vert.x",
+  "licenses": ["The Apache Software License Version 2.0"],
+  "author": "Piotr Jagielski"
+}

@@ -1,11 +1,5 @@
-var App = (function(window, document, io) {
+var App = (function(window, document) {
     'use strict';
-
-    /**
-     * @type {Object}
-     * @private
-     */
-    var _socket;
 
     /**
      * @type {HTMLElement}
@@ -87,17 +81,20 @@ var App = (function(window, document, io) {
         init: function(opts) {
             var that = this;
 
-            // socket.io init
-            _socket  = new io.connect();
-            _socket
-                .on('options:lines', function(limit) {
-                    _linesLimit = limit;
-                })
-                .on('lines', function(lines) {
-                    for (var i = 0; i < lines.length; i+=1) {
-                        that.log(lines[i]);
+            // vertx init
+            var eb = new vertx.EventBus(window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/eventbus');
+
+            eb.onopen = function() {
+                eb.send('buffer', 'empty', function(lines) {
+                    var splitted = lines.split('\n');
+                    for (var i = 0; i < splitted.length; i+=1) {
+                        that.log(splitted[i]);
                     }
+                })
+                eb.registerHandler('log', function(line) {
+                    that.log(line);
                 });
+            }
 
             // Elements
             _logContainer = opts.container;
@@ -150,4 +147,4 @@ var App = (function(window, document, io) {
             }
         }
     };
-})(window, document, io);
+})(window, document);

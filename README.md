@@ -1,39 +1,24 @@
-# frontail(1) – tail -F output in browser
+# frontail – tail -F output in browser
 
-```frontail``` is node.js application for serving `tail -F` output to browser.
+```frontail``` is vert.x application for serving `tail -f` output to browser.
 
 ## Features
 
 * search
-* user authentication
 * log rotation
 * autoscrolling
 * marking logs
 
-## Installation
+## Running
 
-    npm install frontail -g
+    gradle runMod -Dfile=xxx
 
-## Usage
+Web interface is on http://localhost:9090
 
-    frontail [options] [file ...]
+Running as normal user may not allow you to read some log file, it's useful then to ```tee``` log file with sudo, eg:
 
-    Options:
-
-      -h, --help                    output usage information
-      -V, --version                 output the version number
-      -p, --port <port>             server port, default 9001
-      -n, --number <number>         starting lines number, default 10
-      -l, --lines <lines>           number on lines stored in browser, default 2000
-      -d, --daemonize               run as daemon
-      -U, --user <username>         Basic Authentication username, this option works only along with -P option
-      -P, --password <password>     Basic Authentication password, this option works only along with -U option
-      -k, --key <key.pem>           private key for HTTPS
-      -c, --certificate <cert.pem>  certificate for HTTPS
-      --pid-path <path>             if run as daemon file that will store the process id, default /var/run/frontail.pid
-      --log-path <path>             if run as daemon file that will be used as a log, default /dev/null
-
-Web interface is on http://localhost:[port]
+    sudo tail -f /var/log/apache2/access.log | tee tail.log
+  
 
 ## Screenshot
 
@@ -43,7 +28,9 @@ Web interface is on http://localhost:[port]
 
 (The MIT License)
 
-Copyright 2013 Maciej Winnicki http://maciejwinnicki.pl
+Copyright 2013 
+Maciej Winnicki http://maciejwinnicki.pl
+Piotr Jagielski http://jagielu.com
 
 This project is free software released under the MIT/X11 license:
 

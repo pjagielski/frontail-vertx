@@ -1,1 +1,7 @@
-node_modules
+build
+.gradle
+*.log
+.idea
+*.iml
+*.ipr
+*.iws
